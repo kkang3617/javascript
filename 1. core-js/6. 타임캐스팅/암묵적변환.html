@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        var ex = 10 + '20'; //1020 문자열붙임 10이 문자로 암묵적변환
+        console.log('ex: ' + ex);
+
+        var ex2 = 10 * '3'; //30  '3'이 숫자로 암묵전변환
+        console.log('ex2: ' + ex2);
+
+        ex2 = 100 + '';
+        console.log('ex2: ' + typeof ex2);
+
+        //문자열 타입의 암묵적 숫자 변환
+        var ex3 = +'550'; // 550
+
+        ex3 = +'false'; //NaN not a number
+
+        //논리 타입을 암묵적 숫fo자 변환
+        ex3 = +true; //1
+        ex3 = +false; //0
+
+        ex3 = +null; //0
+
+        // ex3 = +NaN; NaN은 변환되지 않음
+
+        console.log('ex3: ' + ex3);
+        console.log('type ex3: ' + typeof ex3);
+
+    </script>
+
+</body>
+</html>
