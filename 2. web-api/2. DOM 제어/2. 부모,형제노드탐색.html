@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="wrap">
+        <ul id="fruits">
+            <li class="apple">Apple</li>
+            <li class="banana">Banana</li>
+            <li class="grape">Grape</li>
+        </ul>
+    </div>
+
+    <table id="board"> <!-- 2행 2열 -->
+        <tr>
+            <td>A</td>
+            <td>B</td>
+        </tr>
+        <tr>
+            <td>C</td>
+            <td>D</td>
+        </tr>
+    </table>
+
+    <script>
+
+        const $banana = document.querySelector('.banana');
+
+        //부모 노드 탐색
+        const $parent = $banana.parentNode;
+        console.log($parent); //ul이 부모임
+
+        const $div = $banana.parentNode.parentNode; //윗윗부모
+        console.log($div);
+
+        //이전 형제노드 탐색
+        const $prev = $banana.previousElementSibling;
+        console.log($prev); //banana 이전 apple
+
+        //다음 형제노드 탐색
+        const $next = $banana.nextElementSibling;
+        console.log($next); //banana 다음 grape
+
+        //더 이상 지목할 형제가 없을 시에는 null이 온다.
+        const $next2 = $next.nextElementSibling;
+        console.log($next2); //grape 다음 요소가 없어서 null
+
+        //table 태그는 자식태그로 tbody를 자동으로 삽입.
+        const $board = document.getElementById('board');
+        const $tbody = $board.children;
+        console.log($tbody[0].children);
+
+    </script>
+
+
+</body>
+</html>
