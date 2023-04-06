@@ -32,19 +32,52 @@
 
     <script>
         /* 1번 */
-        const $checkbox = document.querySelectorAll('input');
+        const $checkbox = document.querySelectorAll('input[type="checkbox"]');
         document.addEventListener('change', e => {
+            // console.log($checkbox);
             if(e.target.checked) {
+                if(e.target.id === 'remember') { // 기억하기 체크박스라면~
+                    return;    //강제종료
+                }
                 alert('동의했습니다.' + e.target.value);
-            }
-        });
+            
+/*             for(let $c of [...$checkbox]) {
+                $c.addEventListener('change', e => {
+                    if(e.target.checked) {
+                        alert(`${e.target.value}번 항목에 동의하셨습니다.`) //그 체크박스의 밸류
+                    } 
+                }); */
+                    }
+                });
 
         /* 2번 */
-        const $check2 = document.querySelector('check2');
-        
-        $check2.addEventListener('click', e => {
+        const $id = document.getElementById('id');
+        const $check2 = document.querySelector('#check2');
+        const $remember = document.getElementById('remember');
 
+        $check2.addEventListener('click', e => { // 클릭했을때 이벤트실행
+            // console.log($id.value);
+            if($id.value === ''){
+                alert('id를 입력해주세요'); //클릭했을때 id가 공백이라면 출력
+            } else if(!$remember.checked) {
+                alert('기억하기를 체크해주세요'); // 클릭했을때 id공백아니고 기억하기가
+                                                //체크되어 있지않으면 출력.
+            }
         });
+ 
+        /* const $result = document.getElementById('id');
+        const $remember = document.getElementById('remember');
+
+        document.getElementById('check2').onclick = function(e) {
+            console.log('value값: ' + $result.value);
+            console.log('check값: ' + $remember.checked);
+
+            if($result.value === '') {
+                alert('아이디는 필수값입니다!');
+            } else if(!$remember.checked) {
+                alert('기억하기를 체크하지 않았습니다.');
+            }
+        } */
 
     </script>
 
