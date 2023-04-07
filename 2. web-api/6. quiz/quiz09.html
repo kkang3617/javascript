@@ -12,7 +12,7 @@
             background: black;
             color: white;
         }
-        
+
         .center {
             text-align: center;
         }
@@ -97,6 +97,25 @@
         클래스 이름을 dark, light 등으로 추가해서 구분을 했습니다.
         참고로 글씨 색깔을 바꿔줘야 하는 태그는 p, h2, a 입니다.
         */
+        const $btn1 = document.getElementById('btn1');
+        const $tags = document.querySelectorAll('p, h2, a');
+
+        $btn1.onclick = function () {
+            $btn1.classList.toggle('dark');
+
+            if ($btn1.classList.contains('dark')) {
+                //어둡게 보기 모드
+                document.body.style.backgroundColor = 'black';
+                [...$tags].forEach($ele => $ele.style.color = 'white'); //반복문
+                $btn1.textContent = '밝게 보기';
+            } else {
+                //밝게 보기 모드
+                document.body.style.backgroundColor = 'white';
+                [...$tags].forEach($ele => $ele.style.color = 'black');
+                $btn1.textContent = '밝게 보기';
+            }
+        }
+        /* 내가 작성
         const $body = document.querySelector('body');
         const $btn1 = document.querySelector('#btn1');
 
@@ -107,8 +126,7 @@
             } else {
                 $btn1.textContent= '어둡게 보기';
             }
-        });
-
+        }); */
 
         /*
         클래스 이름을 통해서 이름 보기 모드인지를 확인.
@@ -117,20 +135,40 @@
         버튼도 '이름 보기', '내용 보기'로 지정.
         p태그 안의 내용만 바꿔 주시면 됩니다.
         */
+        const $btn2 = document.getElementById('btn2');
+        const $content = document.querySelector('.right .inner > p');
+        //난 그냥 p를 쿼리셀렉터로 불러왔었음..
+        const $a = document.querySelector('.right .inner > a');
+
+        $btn2.onclick = function () {
+            if ($btn2.className === 'name') {
+                /* $content.insertAdjacentHTML = ('afterbegin','홍길동<br>20세<br>능력단위<br>Java, Oracle, Jsp, CSS, JavaScript'); */
+                $content.innerHTML = '홍길동<br>20세<br>능력단위<br>Java, Oracle, Jsp, CSS, JavaScript';
+                $a.style.display = 'none';
+                $btn2.textContent = '내용 보기';
+                $btn2.className = 'conView'; // 버튼눌러서 변경되면 클래스이름을 바꿔줌.
+            } else {
+                $content.innerHTML =
+                    '자바스크립트는 객체 기반의 스크립트 프로그래밍 언어이다. 이 언어는 웹 브라우저 내에서 주로 사용하며, 다른 응용 프로그램의 내장 객체에도 접근할 수 있는 기능을 가지고있다. 또한 Node.js와 같은 런타임 환경과 같이 서버 사이드 네트워크 프로그래밍에도 사용되고 있다.';
+                $a.style.display = 'block';
+                $btn2.textContent = '이름 보기';
+                $btn2.className = 'name'; // 클래스이름 되돌려줌.
+            }
+        }
+        /*내가작성
         const $name = document.querySelector('.name');
-        const $inner = document.getElementsByTagName('p');
+        const $p = document.querySelector('p');
 
         $name.onclick = function(){
             
-            if($inner.classList.toggle('change')){
+            if($name.classList.toggle('change')){
                 $name.textContent= '이름보기';
-                $inner.innerHTML= '<p>홍길동<br>20세<br>능력단위<br>Java, Oracle, Jsp, CSS, JavaScript<p>';
+                $p.innerHTML= '<p>홍길동<br>20세<br>능력단위<br>Java, Oracle, Jsp, CSS, JavaScript<p>';
             }else {
                 $name.textContent= '내용보기';
-                $inner.innerHTML= '<p>자바스크립트는 객체 기반의 스크립트 프로그래밍 언어이다. 이 언어는 웹 브라우저 내에서 주로 사용하며, 다른 응용 프로그램의 내장 객체에도 접근할 수 있는 기능을 가지고있다. 또한 Node.js와 같은 런타임 환경과 같이 서버 사이드 네트워크 프로그래밍에도 사용되고 있다.</p>'
+                $p.innerHTML= '<p>자바스크립트는 객체 기반의 스크립트 프로그래밍 언어이다. 이 언어는 웹 브라우저 내에서 주로 사용하며, 다른 응용 프로그램의 내장 객체에도 접근할 수 있는 기능을 가지고있다. 또한 Node.js와 같은 런타임 환경과 같이 서버 사이드 네트워크 프로그래밍에도 사용되고 있다.</p>'
             }
-        };
-
+        }; */
 
         /*
         메모장 보기 모드는 textarea를 생성해서 추가.
@@ -139,8 +177,36 @@
         .left 안에 있는 .inner의 모든 자식 노드를 제거하고
         생성하신 요소를 추가해 주시면 되겠습니다.
         */
+        const $btn3 = document.getElementById('btn3');
 
+        $btn3.onclick = function () {
+            const $inner = document.querySelector('.left > .inner');
 
+            for (let $ele of [...$inner.children]) {
+                $inner.removeChild($ele); //inner의 자식인 img태그 지우기.
+            }
+
+            $btn3.classList.toggle('write');
+
+            if ($btn3.className === 'write') {
+                const $textarea = document.createElement('textarea');
+                $textarea.className = 'memo';
+                const $regBtn = document.createElement('button');
+                $regBtn.textContent = '등록하기';
+                const $frag = document.createDocumentFragment(); // 임시부모생성.
+                $frag.appendChild($textarea);                    //6.복수노드 생성시 주의점 참고.
+                $frag.appendChild($regBtn);
+                $inner.appendChild($frag);
+
+                $btn3.textContent = '사진 모드';
+            } else {
+                const $img = document.createElement('img');
+                $img.setAttribute('src', './img (2)/1.jpg');
+                $inner.appendChild($img);
+
+                $btn3.textContent = '메모장 모드';
+            }
+        }
     </script>
 
 
