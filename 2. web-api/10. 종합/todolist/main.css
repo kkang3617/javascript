@@ -1,0 +1,57 @@
+
+.wrapper {
+    font-size: 18px;
+    background: #dfdfdf;
+    height: 100vh; 
+}
+
+
+
+section.main {
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    color:white;
+    text-align: center;
+    width: 40%;
+    height: 40%;
+    margin: 0 auto;
+    position: relative;
+    top: 10%;
+    overflow: hidden;
+}
+section.main .main-title {
+    background: skyblue;
+    font-size: 1.3em;
+    height: 50px;
+    line-height: 50px;
+
+}
+
+section.main .todoInput {
+    font-size: 1.2em;
+    display: flex;
+    height: 40px;
+    
+}
+
+section.main .todoInput input::placeholder {
+    color: whitesmoke;
+}
+section.main .todoInput .input {
+    flex : 9;
+    background: #454545;
+    border-style: none;
+    padding-left: 1%;
+}
+
+section.main .todoInput .icon {
+    flex : 1;
+    background: #a8a8a8;
+    color: whitesmoke;
+    border-style: none;
+}
+
+section.main .list {
+    color: black;
+}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,9 +16,11 @@
             border: 1px solid #333;
             cursor: pointer;
         }
+
         .toggle-menu {
             display: none;
         }
+
         .active {
             display: block;
             animation: fadeIn 0.5s ease-in-out;
@@ -26,13 +29,16 @@
         @keyframes fadeIn {
             from {
                 opacity: 0;
-            } to {
+            }
+
+            to {
                 opacity: 1;
             }
         }
     </style>
 
 </head>
+
 <body>
 
     <ul class="toggle">
@@ -54,7 +60,6 @@
     </div>
 
     <script>
-
         /*
 
 	메뉴를 클릭할 때마다 해당 토글 메뉴가 뜨면 됩니다.
@@ -66,22 +71,35 @@
         */
 
         const $ul = document.querySelector('ul');
-        const $menu = document.querySelectorAll('.toggle-menu');
+        const $menu = document.querySelectorAll('.toggle-menu'); // 유사배열
 
         $ul.addEventListener('click', e => {
             const $dataId = e.target.getAttribute('data-id');
             console.log($dataId);
-            for(let $e of [...$menu]) {
-                if($e.classList.contains('active')) { // active속성을 가지고 있다면.
+            for (let $e of [...$menu]) { // menu유사배열 -> 배열
+                if ($e.classList.contains('active')) { // active속성을 가지고 있다면.
                     $e.classList.toggle('active'); // 삭제,  toggle:있으면 삭제 없으면 추가
                 }
-                $e.classList.toggle('active', $e.matches($dataId)); 
+                $e.classList.toggle('active', $e.matches($dataId));
             }
 
         });
 
+       /*
+        const $toggle = document.querySelector('.toggle');
+        $toggle.onclick = function (e) {
+            if (!e.target.matches('.toggle > li')) { //.toggle < li 아니면 강제종료
+                return;
+            }
+            const $toggleList = document.querySelectorAll('.toggle-menu');
 
+            for (let $ele of [...$toggleList]) {
+                $ele.classList.toggle('active', document.querySelector(e.target.dataset.id) === $ele);
+            }
+        }; 
+        */
     </script>
-    
+
 </body>
+
 </html>
