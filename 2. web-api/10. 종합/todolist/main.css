@@ -5,8 +5,6 @@
     height: 100vh; 
 }
 
-
-
 section.main {
     background: white;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
@@ -43,15 +41,21 @@ section.main .todoInput .input {
     background: #454545;
     border-style: none;
     padding-left: 1%;
+    outline: none;
 }
 
 section.main .todoInput .icon {
     flex : 1;
-    background: #a8a8a8;
+    background: #989898;
     color: whitesmoke;
     border-style: none;
 }
+section.main .todoInput .icon:hover {
+    background: #afafaf;
+}
 
-section.main .list {
+section.main .todoList {
     color: black;
+    line-height: 1.5;
+    text-align: left;
 }
